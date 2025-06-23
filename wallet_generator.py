@@ -25,29 +25,31 @@ def loading_animation(text="Membuat wallet", duration=1.5):
         time.sleep(0.1)
     sys.stdout.write("\r" + " " * (len(text) + 10) + "\r")
 
-def print_banner():
-    banner = f"""
-{YELLOW}                    XXXXXXX       XXXXXXX  iiii                         999999999          888888888     
-                    X:::::X       X:::::X i::::i                      99:::::::::99      88:::::::::88   
-                    X:::::X       X:::::X  iiii                     99:::::::::::::99  88:::::::::::::88 
-                    X::::::X     X::::::X                          9::::::99999::::::98::::::88888::::::8
-xxxxxxx      xxxxxxxXXX:::::X   X:::::XXXiiiiiii nnnn  nnnnnnnn    9:::::9     9:::::98:::::8     8:::::8
- x:::::x    x:::::x    X:::::X X:::::X   i:::::i n:::nn::::::::nn  9:::::9     9:::::98:::::8     8:::::8
-  x:::::x  x:::::x      X:::::X:::::X     i::::i n::::::::::::::nn  9:::::99999::::::9 8:::::88888:::::8 
-   x:::::xx:::::x        X:::::::::X      i::::i nn:::::::::::::::n  99::::::::::::::9  8:::::::::::::8  
-    x::::::::::x         X:::::::::X      i::::i   n:::::nnnn:::::n    99999::::::::9  8:::::88888:::::8 
-     x::::::::x         X:::::X:::::X     i::::i   n::::n    n::::n         9::::::9  8:::::8     8:::::8
-     x::::::::x        X:::::X X:::::X    i::::i   n::::n    n::::n        9::::::9   8:::::8     8:::::8
-    x::::::::::x    XXX:::::X   X:::::XXX i::::i   n::::n    n::::n       9::::::9    8:::::8     8:::::8
-   x:::::xx:::::x   X::::::X     X::::::Xi::::::i  n::::n    n::::n      9::::::9     8::::::88888::::::8
-  x:::::x  x:::::x  X:::::X       X:::::Xi::::::i  n::::n    n::::n     9::::::9       88:::::::::::::88 
- x:::::x    x:::::x X:::::X       X:::::Xi::::::i  n::::n    n::::n    9::::::9          88:::::::::88   
-xxxxxxx      xxxxxxxXXXXXXX       XXXXXXXiiiiiiii  nnnnnn    nnnnnn   99999999             888888888     
-{RESET}
-{CYAN}🐦 Follow us on Twitter: @xXin98
-"""
-    print(banner)
-    time.sleep(2)
+def show_banner():
+    os.system('cls' if os.name == 'nt' else 'clear')  # Bersihkan layar
+
+    print(Fore.YELLOW)
+    print("                    XXXXXXX       XXXXXXX  iiii                         999999999          888888888     ")
+    print("                    X:::::X       X:::::X i::::i                      99:::::::::99      88:::::::::88   ")
+    print("                    X:::::X       X:::::X  iiii                     99:::::::::::::99  88:::::::::::::88 ")
+    print("                    X::::::X     X::::::X                          9::::::99999::::::98::::::88888::::::8")
+    print("xxxxxxx      xxxxxxxXXX:::::X   X:::::XXXiiiiiii nnnn  nnnnnnnn    9:::::9     9:::::98:::::8     8:::::8")
+    print(" x:::::x    x:::::x    X:::::X X:::::X   i:::::i n:::nn::::::::nn  9:::::9     9:::::98:::::8     8:::::8")
+    print("  x:::::x  x:::::x      X:::::X:::::X     i::::i n::::::::::::::nn  9:::::99999::::::9 8:::::88888:::::8 ")
+    print("   x:::::xx:::::x        X:::::::::X      i::::i nn:::::::::::::::n  99::::::::::::::9  8:::::::::::::8  ")
+    print("    x::::::::::x         X:::::::::X      i::::i   n:::::nnnn:::::n    99999::::::::9  8:::::88888:::::8 ")
+    print("     x::::::::x         X:::::X:::::X     i::::i   n::::n    n::::n         9::::::9  8:::::8     8:::::8")
+    print("     x::::::::x        X:::::X X:::::X    i::::i   n::::n    n::::n        9::::::9   8:::::8     8:::::8")
+    print("    x::::::::::x    XXX:::::X   X:::::XXX i::::i   n::::n    n::::n       9::::::9    8:::::8     8:::::8")
+    print("   x:::::xx:::::x   X::::::X     X::::::Xi::::::i  n::::n    n::::n      9::::::9     8::::::88888::::::8")
+    print("  x:::::x  x:::::x  X:::::X       X:::::Xi::::::i  n::::n    n::::n     9::::::9       88:::::::::::::88 ")
+    print(" x:::::x    x:::::x X:::::X       X:::::Xi::::::i  n::::n    n::::n    9::::::9          88:::::::::88   ")
+    print("xxxxxxx      xxxxxxxXXXXXXX       XXXXXXXiiiiiiii  nnnnnn    nnnnnn   99999999             888888888     ")
+    print(Style.RESET_ALL)
+    print(Fore.CYAN + "🚀 Welcome to the xXin98 Setup Script!")
+    print(Fore.MAGENTA + "🐦 Follow us on Twitter: @xXin98")
+    time.sleep(3)
+
 
 def generate_wallets():
     Account.enable_unaudited_hdwallet_features()
