@@ -3,37 +3,16 @@ import sys
 import random
 from eth_account import Account
 from colorama import init, Fore, Style
-import os
 
-init(autoreset=True)  
+# Inisialisasi colorama
+init(autoreset=True)
 
-def show_banner():
-    os.system('cls' if os.name == 'nt' else 'clear')  
-
-    print(Fore.YELLOW)
-    print("                    XXXXXXX       XXXXXXX  iiii                         999999999          888888888     ")
-    print("                    X:::::X       X:::::X i::::i                      99:::::::::99      88:::::::::88   ")
-    print("                    X:::::X       X:::::X  iiii                     99:::::::::::::99  88:::::::::::::88 ")
-    print("                    X::::::X     X::::::X                          9::::::99999::::::98::::::88888::::::8")
-    print("xxxxxxx      xxxxxxxXXX:::::X   X:::::XXXiiiiiii nnnn  nnnnnnnn    9:::::9     9:::::98:::::8     8:::::8")
-    print(" x:::::x    x:::::x    X:::::X X:::::X   i:::::i n:::nn::::::::nn  9:::::9     9:::::98:::::8     8:::::8")
-    print("  x:::::x  x:::::x      X:::::X:::::X     i::::i n::::::::::::::nn  9:::::99999::::::9 8:::::88888:::::8 ")
-    print("   x:::::xx:::::x        X:::::::::X      i::::i nn:::::::::::::::n  99::::::::::::::9  8:::::::::::::8  ")
-    print("    x::::::::::x         X:::::::::X      i::::i   n:::::nnnn:::::n    99999::::::::9  8:::::88888:::::8 ")
-    print("     x::::::::x         X:::::X:::::X     i::::i   n::::n    n::::n         9::::::9  8:::::8     8:::::8")
-    print("     x::::::::x        X:::::X X:::::X    i::::i   n::::n    n::::n        9::::::9   8:::::8     8:::::8")
-    print("    x::::::::::x    XXX:::::X   X:::::XXX i::::i   n::::n    n::::n       9::::::9    8:::::8     8:::::8")
-    print("   x:::::xx:::::x   X::::::X     X::::::Xi::::::i  n::::n    n::::n      9::::::9     8::::::88888::::::8")
-    print("  x:::::x  x:::::x  X:::::X       X:::::Xi::::::i  n::::n    n::::n     9::::::9       88:::::::::::::88 ")
-    print(" x:::::x    x:::::x X:::::X       X:::::Xi::::::i  n::::n    n::::n    9::::::9          88:::::::::88   ")
-    print("xxxxxxx      xxxxxxxXXXXXXX       XXXXXXXiiiiiiii  nnnnnn    nnnnnn   99999999             888888888     ")
-    print(Style.RESET_ALL)
-    print(Fore.CYAN + "🚀 Welcome to the xXin98 auto generate EVM Wallet!")
-    print(Fore.MAGENTA + "🐦 Follow us on Twitter: @xXin98")
-    time.sleep(3)
-
-
-show_banner()
+# Warna
+YELLOW = Fore.YELLOW
+CYAN = Fore.CYAN
+GREEN = Fore.GREEN
+RED = Fore.RED
+RESET = Style.RESET_ALL
 
 def loading_animation(text="Membuat wallet", duration=1.5):
     spinner = ['|', '/', '-', '\\']
@@ -46,16 +25,41 @@ def loading_animation(text="Membuat wallet", duration=1.5):
         time.sleep(0.1)
     sys.stdout.write("\r" + " " * (len(text) + 10) + "\r")
 
+def print_banner():
+    banner = f"""
+{YELLOW}                    XXXXXXX       XXXXXXX  iiii                         999999999          888888888     
+                    X:::::X       X:::::X i::::i                      99:::::::::99      88:::::::::88   
+                    X:::::X       X:::::X  iiii                     99:::::::::::::99  88:::::::::::::88 
+                    X::::::X     X::::::X                          9::::::99999::::::98::::::88888::::::8
+xxxxxxx      xxxxxxxXXX:::::X   X:::::XXXiiiiiii nnnn  nnnnnnnn    9:::::9     9:::::98:::::8     8:::::8
+ x:::::x    x:::::x    X:::::X X:::::X   i:::::i n:::nn::::::::nn  9:::::9     9:::::98:::::8     8:::::8
+  x:::::x  x:::::x      X:::::X:::::X     i::::i n::::::::::::::nn  9:::::99999::::::9 8:::::88888:::::8 
+   x:::::xx:::::x        X:::::::::X      i::::i nn:::::::::::::::n  99::::::::::::::9  8:::::::::::::8  
+    x::::::::::x         X:::::::::X      i::::i   n:::::nnnn:::::n    99999::::::::9  8:::::88888:::::8 
+     x::::::::x         X:::::X:::::X     i::::i   n::::n    n::::n         9::::::9  8:::::8     8:::::8
+     x::::::::x        X:::::X X:::::X    i::::i   n::::n    n::::n        9::::::9   8:::::8     8:::::8
+    x::::::::::x    XXX:::::X   X:::::XXX i::::i   n::::n    n::::n       9::::::9    8:::::8     8:::::8
+   x:::::xx:::::x   X::::::X     X::::::Xi::::::i  n::::n    n::::n      9::::::9     8::::::88888::::::8
+  x:::::x  x:::::x  X:::::X       X:::::Xi::::::i  n::::n    n::::n     9::::::9       88:::::::::::::88 
+ x:::::x    x:::::x X:::::X       X:::::Xi::::::i  n::::n    n::::n    9::::::9          88:::::::::88   
+xxxxxxx      xxxxxxxXXXXXXX       XXXXXXXiiiiiiii  nnnnnn    nnnnnn   99999999             888888888     
+{RESET}
+{CYAN}🐦 Follow us on Twitter: @xXin98
+"""
+    print(banner)
+    time.sleep(2)
+
 def generate_wallets():
     Account.enable_unaudited_hdwallet_features()
+    print_banner()
 
     try:
-        jumlah = int(input("🔢 Masukkan jumlah wallet yang ingin dibuat: "))
+        jumlah = int(input(f"{YELLOW}🔢 Masukkan jumlah wallet yang ingin dibuat: {RESET}"))
         if jumlah <= 0:
-            print("❌ Jumlah harus lebih dari 0.")
+            print(f"{RED}❌ Jumlah harus lebih dari 0.{RESET}")
             return
     except ValueError:
-        print("❌ Input tidak valid. Harus berupa angka.")
+        print(f"{RED}❌ Input tidak valid. Harus berupa angka.{RESET}")
         return
 
     private_file = "private_keys.txt"
@@ -64,23 +68,24 @@ def generate_wallets():
     with open(private_file, "w") as f_priv, open(mnemonic_file, "w") as f_mnem:
         for i in range(jumlah):
             print("=" * 50)
-            print(f"🧪 Membuat Wallet #{i+1}")
+            print(f"{CYAN}🧪 Membuat Wallet #{i+1}{RESET}")
             loading_animation()
 
             # Buat wallet baru
             account, mnemonic = Account.create_with_mnemonic()
+            raw_key = account.key.hex()
+            private_key = f"0x{raw_key}"
             address = account.address
-            private_key = "0x" + account.key.hex()
 
-            # Validasi
-            regenerated = Account.from_key(private_key)
+            # Validasi ulang (pakai raw_key tanpa 0x)
+            regenerated = Account.from_key(raw_key)
             assert regenerated.address == address
 
-            # Tampilkan di terminal
-            print(f"🏷️ Address       : {address}")
-            print(f"🔐 Private Key  : {private_key}")
-            print(f"🧠 Mnemonic     : {mnemonic}")
-            print("✅ Wallet berhasil dibuat!")
+            # Tampilkan
+            print(f"{YELLOW}🏷️  Address     : {address}")
+            print(f"{GREEN}🔐 Private Key : {private_key}")
+            print(f"{CYAN}🧠 Mnemonic    : {mnemonic}")
+            print(f"{GREEN}✅ Wallet berhasil dibuat!{RESET}")
 
             # Simpan ke file
             f_priv.write(private_key + "\n")
