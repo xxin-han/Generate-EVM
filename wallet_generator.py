@@ -73,12 +73,12 @@ def generate_wallets():
 
             # Buat wallet baru
             account, mnemonic = Account.create_with_mnemonic()
-            raw_key = account.key.hex()
-            private_key = f"0x{raw_key}"
+            key_hex = account.key.hex()
             address = account.address
+            private_key = f"0x{key_hex}"
 
-            # Validasi ulang (pakai raw_key tanpa 0x)
-            regenerated = Account.from_key(raw_key)
+            # Validasi ulang (tanpa '0x')
+            regenerated = Account.from_key(key_hex)
             assert regenerated.address == address
 
             # Tampilkan
