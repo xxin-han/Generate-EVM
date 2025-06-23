@@ -1,3 +1,4 @@
+import os
 import time
 import sys
 import random
@@ -12,6 +13,7 @@ YELLOW = Fore.YELLOW
 CYAN = Fore.CYAN
 GREEN = Fore.GREEN
 RED = Fore.RED
+MAGENTA = Fore.MAGENTA
 RESET = Style.RESET_ALL
 
 def loading_animation(text="Membuat wallet", duration=1.5):
@@ -27,7 +29,6 @@ def loading_animation(text="Membuat wallet", duration=1.5):
 
 def show_banner():
     os.system('cls' if os.name == 'nt' else 'clear')  # Bersihkan layar
-
     print(Fore.YELLOW)
     print("                    XXXXXXX       XXXXXXX  iiii                         999999999          888888888     ")
     print("                    X:::::X       X:::::X i::::i                      99:::::::::99      88:::::::::88   ")
@@ -46,14 +47,14 @@ def show_banner():
     print(" x:::::x    x:::::x X:::::X       X:::::Xi::::::i  n::::n    n::::n    9::::::9          88:::::::::88   ")
     print("xxxxxxx      xxxxxxxXXXXXXX       XXXXXXXiiiiiiii  nnnnnn    nnnnnn   99999999             888888888     ")
     print(Style.RESET_ALL)
-    print(Fore.CYAN + "🚀 Welcome to the xXin98 Setup Script!")
-    print(Fore.MAGENTA + "🐦 Follow us on Twitter: @xXin98")
+    print(CYAN + "🚀 Welcome to the xXin98 Setup Script!")
+    print(MAGENTA + "🐦 Follow us on Twitter: @xXin98")
+    print(RESET)
     time.sleep(3)
-
 
 def generate_wallets():
     Account.enable_unaudited_hdwallet_features()
-    print_banner()
+    show_banner()
 
     try:
         jumlah = int(input(f"{YELLOW}🔢 Masukkan jumlah wallet yang ingin dibuat: {RESET}"))
@@ -75,15 +76,14 @@ def generate_wallets():
 
             # Buat wallet baru
             account, mnemonic = Account.create_with_mnemonic()
-            key_hex = account.key.hex()
+            private_key = "0x" + account.key.hex()
             address = account.address
-            private_key = "0x" + account.key.hex().lstrip("0x")
 
-            # Validasi ulang (tanpa '0x')
-            regenerated = Account.from_key(key_hex)
+            # Validasi ulang (debug assertion)
+            regenerated = Account.from_key(account.key)
             assert regenerated.address == address
 
-            # Tampilkan
+            # Tampilkan hasil
             print(f"{YELLOW}🏷️  Address     : {address}")
             print(f"{GREEN}🔐 Private Key : {private_key}")
             print(f"{CYAN}🧠 Mnemonic    : {mnemonic}")
