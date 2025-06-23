@@ -76,8 +76,11 @@ def generate_wallets():
 
             # Buat wallet baru
             account, mnemonic = Account.create_with_mnemonic()
-            private_key = "0x" + account.key.hex()
+            private_key = account.key.hex()
+            if not private_key.startswith("0x"):
+                private_key = "0x" + private_key
             address = account.address
+
 
             # Validasi ulang (debug assertion)
             regenerated = Account.from_key(account.key)
