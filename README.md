@@ -17,7 +17,7 @@ Script Python ini digunakan untuk membuat wallet Ethereum secara otomatis lengka
 
 ## Instalasi
 
-### 1. Clone Repository
+###  Clone Repository
 
 ```bash
 git clone https://github.com/xxin-han/Generate-EVM.git
